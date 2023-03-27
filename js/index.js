@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     handleGet();
 });
-//link HTML to js
+//grab the HTML elements
 const animalList = document.getElementById('animal-list')
 const animalName = document.getElementById('animal-name')
 const animalImage = document.getElementById('animal-image')
@@ -25,6 +25,16 @@ function handleCharacters(data) {
             animalVoteCount.textContent = data.votes;
         });
     });
-}                    
+}  
+//Gets the votes and updates the votes
+animalVotesForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const addVote = parseInt(e.target.votes.value);
+    let current = parseInt(animalVoteCount.textContent);
+    let totalVotes = (current + addVote);
+    animalVoteCount.textContent = totalVotes; 
+})  
+//Updating the database
+fetch ('http://localhost:3000/characters')         
 
    
